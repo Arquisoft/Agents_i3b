@@ -21,3 +21,4 @@ In order to run the application you need to download and install mongoDB. You mu
 - Juan Francisco Piñera Ovejero
 - Guillermo Rodríguez González 
 - Adrian
+-fredo

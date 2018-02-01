@@ -11,6 +11,8 @@ In order to run the application you need to download and install mongoDB. You mu
 
 # Authors 2017-2018
 
+- Adrian
+- Fredo
 - Víctor Repiso Menéndez
 
 # Authors 2016-2017
@@ -20,5 +22,4 @@ In order to run the application you need to download and install mongoDB. You mu
 - Paula Tuñón Alba
 - Juan Francisco Piñera Ovejero
 - Guillermo Rodríguez González 
-- Adrian
--fredo
+

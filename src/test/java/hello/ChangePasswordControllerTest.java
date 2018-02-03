@@ -25,6 +25,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -92,6 +93,9 @@ public class ChangePasswordControllerTest {
         assertTrue(retrieved.getEmail().equals("test1@mail.com"));
         assertTrue(!retrieved.getPassword().equals("pass"));
         assertTrue(retrieved.getPassword().equals("newpass"));
+        
+        boolean update = db.updateInfo(retrieved.getId(), "newpass", "pass");
+        assertThat(update, equalTo(true));
 
     }
 

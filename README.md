@@ -9,7 +9,7 @@ In order to run the application you need to download and install mongoDB. You mu
 
 # Authors 2017-2018
 
-- Adrian de Miguel Palacio
+- Adrián de Miguel Palacio
 - Fredo
 - Víctor Repiso Menéndez
 

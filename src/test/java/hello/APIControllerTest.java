@@ -60,48 +60,66 @@ public class APIControllerTest {
 
     @Test
     public void testDatabase() throws Exception {
-        UserInfo user = new UserInfo("pass2", "name", "surname", "ma@il2.com", new Date());
+        UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+        db.deleteUser(user);
         db.insertUser(user);
-        UserInfo userFromDB = db.getParticipant("ma@il2.com", "pass2");
-        assertThat(user.getEmail(), equalTo(userFromDB.getEmail()));
-        assertThat(user.getPassword(), equalTo(userFromDB.getPassword()));
-
-        boolean update = db.updateInfo(userFromDB.getId(), "pass2", "pass3");
-        userFromDB = db.getParticipant("ma@il2.com", "pass3");
-        assertThat(update, equalTo(true));
-        assertThat(userFromDB, notNullValue());
-        assertThat("ma@il2.com", equalTo(userFromDB.getEmail()));
-        assertThat("pass3", equalTo(userFromDB.getPassword()));
-
-
-        update = db.updateInfo(userFromDB.getId(), "pass2", "pass3");
-        assertThat(update, equalTo(false));
         
-        update = db.updateInfo(userFromDB.getId(), "pass3", "pass2");
-        assertThat(update, equalTo(true));
+        UserInfo2 userFromDB = db.getAgent("11111111A", "123456", "Person");
+        assertThat(user.getId(), equalTo(userFromDB.getId()));
+        assertThat(user.getPassword(), equalTo(userFromDB.getPassword()));
+        assertThat(user.getKind(), equalTo(userFromDB.getKind()));
+
+//        boolean update = db.updateInfo(userFromDB.getId(), "pass2", "pass3");
+//        userFromDB = db.getParticipant("ma@il2.com", "pass3");
+//        assertThat(update, equalTo(true));
+//        assertThat(userFromDB, notNullValue());
+//        assertThat("ma@il2.com", equalTo(userFromDB.getEmail()));
+//        assertThat("pass3", equalTo(userFromDB.getPassword()));
+//
+//
+//        update = db.updateInfo(userFromDB.getId(), "pass2", "pass3");
+//        assertThat(update, equalTo(false));
+//        
+//        update = db.updateInfo(userFromDB.getId(), "pass3", "pass2");
+//        assertThat(update, equalTo(true));
+        
 
     }
 
     @Test
     public void postTestUser() throws Exception {
-        UserInfo user = new UserInfo("pass", "name", "surname", "ma@il.com", new Date());
-        db.insertUser(user);
-        mockMvc.perform(post("/user")
-                .content("{ \"login\": \"ma@il.com\", \"password\": \"pass\"}")
-                .contentType(new MediaType(MediaType.APPLICATION_JSON.getType(),
-                        MediaType.APPLICATION_JSON.getSubtype(),
-                        Charset.forName("utf8"))))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json;charset=UTF-8"))
-                .andExpect(content().encoding("UTF-8"))
-                .andExpect(content().json("{\"firstName\":\"name\",\"lastName\":\"surname\",\"age\":0,\"ID\":null,\"email\":\"ma@il.com\"}")
-                );
+//        UserInfo user = new UserInfo("pass", "name", "surname", "ma@il.com", new Date());
+//        db.insertUser(user);
+//        mockMvc.perform(post("/user")
+//                .content("{ \"login\": \"ma@il.com\", \"password\": \"pass\"}")
+//                .contentType(new MediaType(MediaType.APPLICATION_JSON.getType(),
+//                        MediaType.APPLICATION_JSON.getSubtype(),
+//                        Charset.forName("utf8"))))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType("application/json;charset=UTF-8"))
+//                .andExpect(content().encoding("UTF-8"))
+//                .andExpect(content().json("{\"firstName\":\"name\",\"lastName\":\"surname\",\"age\":0,\"ID\":null,\"email\":\"ma@il.com\"}")
+//                );
+    	
+		  UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+		  db.deleteUser(user);
+		  db.insertUser(user);
+		  mockMvc.perform(post("/user")
+		          .content("{ \"login\": \"11111111A\", \"password\": \"123456\", \"kind\": \"Person\"}")
+		          .contentType(new MediaType(MediaType.APPLICATION_JSON.getType(),
+		                  MediaType.APPLICATION_JSON.getSubtype(),
+		                  Charset.forName("utf8"))))
+		          .andExpect(status().isOk())
+		          .andExpect(content().contentType("application/json;charset=UTF-8"))
+		          .andExpect(content().encoding("UTF-8"))
+		          .andExpect(content().json("{\"id\":\"11111111A\",\"name\":\"Pepe\",\"email\":\"mail@mail.com\",\"location\":\"Oviedo\",\"kind\":\"Person\",\"kindCode\":\"1\"}")
+		          );
     }
 
     @Test
     public void postTestNotFoundUser() throws Exception {
         mockMvc.perform(post("/user")
-                .content("{ \"login\": \"ma@il.com\", \"password\": \"nothepassword\"}")
+                .content("{ \"login\": \"11111111A\", \"password\": \"123456\", \"kind\": \"Perso\"}")
                 .contentType(new MediaType(MediaType.APPLICATION_JSON.getType(),
                         MediaType.APPLICATION_JSON.getSubtype(),
                         Charset.forName("utf8"))))

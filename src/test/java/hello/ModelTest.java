@@ -56,7 +56,8 @@ public class ModelTest {
         ID = "11111111A";
         kindCode="1";
         
-        UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+        //UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+        UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person");
 
         assertTrue(user.getPassword().equals(password));
         assertTrue(user.getName().equals(name));

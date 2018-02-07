@@ -1,5 +1,9 @@
 package hello;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
@@ -28,18 +32,13 @@ public class UserInfo2 {
 
     private UserInfo2() {}
 	
-	public UserInfo2(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
+	public UserInfo2(String id,String passw ,String name,String email, String location, String kind) {
         this.id=id;
         this.password=passw;
 		this.name = name;
         this.email = email;
         this.location=location;
         this.kind=kind;
-        this.kindCode=kindCode;
-    }
-    
-    public UserInfo2(String[] data) {
-        this(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
     }
 
     public String getPassword() {
@@ -87,7 +86,21 @@ public class UserInfo2 {
 	}
 
 	public String getKindCode() {
-		return kindCode;
+		try {
+		BufferedReader br =new BufferedReader(new FileReader("Libro1.csv"));
+        String line = br.readLine();
+        while (null!=line) {
+           String [] fields = line.split(";");
+           if(this.kind==fields[1])
+           {
+        	   return fields[0];
+           }
+        }
+		}catch(IOException e)
+		{
+			LOG.error(e.getMessage(), e);
+		}
+        return null;
 	}
 
     

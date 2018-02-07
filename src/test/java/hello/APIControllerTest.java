@@ -65,7 +65,8 @@ public class APIControllerTest {
 
     @Test
     public void testDatabase() throws Exception {
-        UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+        //UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+    	UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person");
         db.deleteUser(user);
         db.insertUser(user);
         

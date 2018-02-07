@@ -83,7 +83,7 @@ public class FormControllerTest {
 //                .andExpect(content().string(containsString("Birthdate:")));
     	
     	UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
-    	//db.insertUser(user);
+    	db.insertUser(user);
     	
     	mockMvc.perform(post("/login")
               .param("login", "11111111A")

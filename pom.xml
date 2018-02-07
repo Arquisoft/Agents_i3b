@@ -5,7 +5,7 @@
 
 	<groupId>es.uniovi.asw</groupId>
 	<artifactId>participants_i3b</artifactId>
-	<name>participants_i3b</name>
+	<name>agents_i3b</name>
 	<version>0.0.1</version>
 
 	<parent>

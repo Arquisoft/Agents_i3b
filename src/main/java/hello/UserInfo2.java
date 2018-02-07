@@ -1,26 +1,19 @@
 package hello;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.util.Date;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "users")
-public class User {
+public class UserInfo2 {
 
     // Log
-    private static final Logger LOG = LoggerFactory.getLogger(User.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserInfo2.class);
 
     @Id
     private String id;
+    
 	private String password;
     
     private String name;
@@ -33,27 +26,20 @@ public class User {
     
     private String kindCode; 
 
-    private User() {}
-    
-    public User(String firstName, String kind, String email) {
-        this.name = firstName;
+    private UserInfo2() {}
+	
+	public UserInfo2(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
+        this.id=id;
+        this.password=passw;
+		this.name = name;
         this.email = email;
+        this.location=location;
         this.kind=kind;
+        this.kindCode=kindCode;
     }
     
-    public User(String password, String firstName, String kind, String email) {
-        this(firstName, kind, email);
-    	this.password = password;
-    }
-
-    public User(String firstName, String kind, String email, String location, String psw)
-    {
-    	this(psw, firstName, kind, email);
-    	this.location=location;
-    }
-    
-    public User(String[] data) {
-        this(data[0], data[1], data[2], data[3], data[4]);
+    public UserInfo2(String[] data) {
+        this(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
     }
 
     public String getPassword() {
@@ -121,7 +107,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserInfo2 other = (UserInfo2) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

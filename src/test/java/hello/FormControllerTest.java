@@ -63,32 +63,56 @@ public class FormControllerTest {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Username:")))
-                .andExpect(content().string(containsString("Password:")));
+                .andExpect(content().string(containsString("Password:")))
+                .andExpect(content().string(containsString("Kind:")));
     }
 
     @Test
     public void testLoginCorrect() throws Exception {
-        UserInfo user = new UserInfo("pass", "name", "surname", "macorrect@il.com", new Date());
-        db.insertUser(user);
-
-        mockMvc.perform(post("/login")
-                .param("login", "macorrect@il.com")
-                .param("password", "pass"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("name1", equalTo("name")))
-                .andExpect(model().attribute("name2", equalTo("surname")))
-                .andExpect(model().attribute("email", equalTo("macorrect@il.com")))
-                .andExpect(content().string(containsString("Name:")))
-                .andExpect(content().string(containsString("Birthdate:")));
+//        UserInfo user = new UserInfo("pass", "name", "surname", "macorrect@il.com", new Date());
+//        db.insertUser(user);
+//
+//        mockMvc.perform(post("/login")
+//                .param("login", "macorrect@il.com")
+//                .param("password", "pass"))
+//                .andExpect(status().isOk())
+//                .andExpect(model().attribute("name1", equalTo("name")))
+//                .andExpect(model().attribute("name2", equalTo("surname")))
+//                .andExpect(model().attribute("email", equalTo("macorrect@il.com")))
+//                .andExpect(content().string(containsString("Name:")))
+//                .andExpect(content().string(containsString("Birthdate:")));
+    	
+    	UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+    	db.deleteUser(user);
+    	db.insertUser(user);
+    	
+    	mockMvc.perform(post("/login")
+              .param("login", "11111111A")
+              .param("password", "123456")
+    		  .param("kind","Person"))
+              .andExpect(status().isOk())
+              .andExpect(model().attribute("name", equalTo("Pepe")))
+              .andExpect(model().attribute("email", equalTo("mail@mail.com")))
+              .andExpect(model().attribute("location", equalTo("Oviedo")))
+              .andExpect(model().attribute("kind", equalTo("Person")))
+              .andExpect(model().attribute("kindCode", equalTo("1")));
+    	
+    	
     }
 
     @Test
     public void testLoginIncorrect() throws Exception {
-        mockMvc.perform(post("/login")
-                .param("login", "inco@rre.ct")
-                .param("password", "user"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Invalid login details.")));
+//        mockMvc.perform(post("/login")
+//                .param("login", "inco@rre.ct")
+//                .param("password", "user"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(containsString("Invalid login details.")));
+    	 mockMvc.perform(post("/login")
+               .param("login", "11111111A")
+               .param("password", "123456")
+               .param("kind","Agent"))
+               .andExpect(status().isOk())
+               .andExpect(content().string(containsString("Invalid login details.")));
     }
 
 }

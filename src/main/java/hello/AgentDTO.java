@@ -2,30 +2,26 @@ package hello;
 
 public class AgentDTO 
 {
-	 private String name;
-	    
-    private String email; 
-	    
-    private String location; 
-	    
-    private String kind; 
-	    
+	private String id;
+	private String name;    
+    private String email;     
+    private String location;     
+    private String kind;     
     private String kindCode;
     
-    private String id;
     
     public AgentDTO(){}
     
-    public AgentDTO(User u)
+    public AgentDTO(UserInfo2 u)
     {
+    	this.id=u.getId();
+    	this.name=u.getName();
     	this.email=u.getEmail();
+    	this.location=u.getLocation();
     	this.kind=u.getKind();
     	this.kindCode=u.getKindCode();
-    	this.location="";
-    	if(u.getLocation()!=null)
-    		this.location=u.getLocation();
-    	this.name=u.getName();
-    	this.id=u.getId();
+    	
+    	
     }
     
 }

@@ -5,12 +5,12 @@
 
 # Agents_i3b
 
-In order to run the application you need to download and install mongoDB. You must create an empty folder called "data\db" in the root of the partition where you installed mongo (Example: "C:\data\db"). If you already have it installed, please run in mongoConsole db.users.remove({}) before executing the tests. (Executing the tests provide mock data)
+In order to run the application you need to download and install mongoDB. You can download it here: https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.2-signed.msi/download Before running the tests with maven, you have to run the mongoDB database. In order to run the database, first you must create an empty folder called "data\db" in the root of the partition where you installed mongo (Example: "C:\data\db"). Then you have to run the database executing mongod.exe (Example: "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe"). After running the database, now you can run the maven tests.
 
 # Authors 2017-2018
 
 - Adrián de Miguel Palacio
-- Fredo
+- Alfredo Fuentes Martín
 - Víctor Repiso Menéndez
 
 # Authors 2016-2017

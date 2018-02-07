@@ -83,6 +83,7 @@ public class FormControllerTest {
 //                .andExpect(content().string(containsString("Birthdate:")));
     	
     	UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+    	db.deleteUser(user);
     	db.insertUser(user);
     	
     	mockMvc.perform(post("/login")
@@ -96,7 +97,7 @@ public class FormControllerTest {
               .andExpect(model().attribute("kind", equalTo("Person")))
               .andExpect(model().attribute("kindCode", equalTo("1")));
     	
-    	db.deleteUser(user);
+    	
     }
 
     @Test

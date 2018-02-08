@@ -39,9 +39,20 @@ public class UserInfo2 {
         this.email = email;
         this.location=location;
         this.kind=kind;
+        
     }
 
-    public String getPassword() {
+    public UserInfo2(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
+    	this.id=id;
+        this.password=passw;
+		this.name = name;
+        this.email = email;
+        this.location=location;
+        this.kind=kind;
+        this.kindCode=kindCode;
+	}
+
+	public String getPassword() {
 		return password;
 	}
 
@@ -91,7 +102,7 @@ public class UserInfo2 {
         String line = br.readLine();
         while (null!=line) {
            String [] fields = line.split(";");
-           if(this.kind==fields[1])
+           if(this.kind.equals(fields[1]))
            {
         	   return fields[0];
            }
@@ -100,7 +111,7 @@ public class UserInfo2 {
 		{
 			LOG.error(e.getMessage(), e);
 		}
-        return null;
+        return kindCode;
 	}
 
     

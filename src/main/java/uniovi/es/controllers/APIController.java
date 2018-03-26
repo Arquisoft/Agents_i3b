@@ -22,7 +22,6 @@ public class APIController {
     private AgentsService agentsService;
 
 	@RequestMapping(value = "/checkAgent", method = RequestMethod.POST)
-    @ResponseBody
     public ResponseEntity user(@RequestBody AgentLogin login) {
         // If the combination of email, password and kindCode is correct, 200 OK is returned
         // If not, 404 NOT FOUND is returned

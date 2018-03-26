@@ -21,10 +21,10 @@ public class APIController {
 	@Autowired
     private AgentsService agentsService;
 
-    @RequestMapping(value = "/checkAgent", method = RequestMethod.POST)
+	@RequestMapping(value = "/checkAgent", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity user(@RequestBody AgentLogin login) {
-        // If the combination of email and password is correct, the data of the user is returned
+        // If the combination of email, password and kindCode is correct, 200 OK is returned
         // If not, 404 NOT FOUND is returned
 
         Agent user = agentsService.getAgent(login.getLogin(), login.getPassword(),login.getKindCode());

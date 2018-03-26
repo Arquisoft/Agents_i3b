@@ -30,10 +30,9 @@ public class FormController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(Model model, @RequestParam(value = "login") String login, 
     		@RequestParam(value = "password") String password, 
-    		@RequestParam(value = "kind") String kind ) {
-        // If the combination of login, password and kind is correct, the data of the user is returned
-        // If not, 404 NOT FOUND is returned
-        Agent user = agentsService.getAgent(login, password,kind);
+    		@RequestParam(value = "kind") String kindCode ) {
+
+        Agent user = agentsService.getAgent(login, password,kindCode);
 
         if (user == null)
             return "usererror";
@@ -44,7 +43,6 @@ public class FormController {
             model.addAttribute("kind", user.getKind());
             model.addAttribute("kindCode", user.getKindCode());
 
-            //model.addAttribute("nif", citizen.NIF);
             return "info";
         }
 

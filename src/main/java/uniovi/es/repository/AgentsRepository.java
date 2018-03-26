@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import uniovi.es.entities.Agent;
 
-
 @Repository
 public interface AgentsRepository extends MongoRepository<Agent, String> {
 

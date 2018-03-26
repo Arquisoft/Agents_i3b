@@ -1,4 +1,4 @@
-package controller;
+package uniovi.es.controllers;
 
 
 import org.springframework.stereotype.Controller;

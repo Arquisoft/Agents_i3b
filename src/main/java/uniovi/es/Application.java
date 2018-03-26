@@ -1,4 +1,5 @@
-package hello;
+package uniovi.es;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableMongoRepositories("repository")
-@ComponentScan({"repository","services","controller", "hello"})
+@ComponentScan({"repository","services","controllers", "entities"})
 public class Application {
 
     public static void main(String[] args) {

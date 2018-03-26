@@ -28,7 +28,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
-import repository.DBService;
+import uniovi.es.Application;
+import uniovi.es.entities.Agent;
+import uniovi.es.services.AgentsService;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,7 +50,7 @@ public class FormControllerTest {
     private WebApplicationContext context;
 
     @Autowired
-    private DBService db;
+    private AgentsService agentsService;
 
     @Before
     public void setUp() throws Exception {
@@ -83,9 +85,9 @@ public class FormControllerTest {
 //                .andExpect(content().string(containsString("Birthdate:")));
     	
     	//UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
-    	UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person");
-    	db.deleteUser(user);
-    	db.insertUser(user);
+    	Agent user = new Agent("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person");
+    	agentsService.deleteUser(user);
+    	agentsService.insertUser(user);
     	
     	mockMvc.perform(post("/login")
               .param("login", "11111111A")

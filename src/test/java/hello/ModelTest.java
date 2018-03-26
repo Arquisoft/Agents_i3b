@@ -18,6 +18,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
+import uniovi.es.Application;
+import uniovi.es.entities.Agent;
+
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ComponentScan("repository")
@@ -56,7 +59,7 @@ public class ModelTest {
         ID = "11111111A";
         kindCode="1";
         
-        UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
+        Agent user = new Agent("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person","1");
         //UserInfo2 user = new UserInfo2("11111111A","123456","Pepe","mail@mail.com","Oviedo","Person");
 
         assertTrue(user.getPassword().equals(password));
@@ -65,12 +68,6 @@ public class ModelTest {
         assertTrue(user.getLocation().equals(location));
         assertTrue(user.getId().equals(ID));
         assertTrue(user.getKindCode().equals(kindCode));
-    }
-
-    @Test
-    public void testCitizenDTO()throws Exception{
-        AgentDTO citizen = new AgentDTO();
-        assertNotNull(citizen);
     }
 
 }

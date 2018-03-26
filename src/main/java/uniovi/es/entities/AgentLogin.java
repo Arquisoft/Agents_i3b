@@ -1,8 +1,8 @@
-package hello;
+package uniovi.es.entities;
 
 public class AgentLogin {
 
-	private String login, password,kind;
+	private String login, password,kindCode;
 
     public String getLogin() {
         return login;
@@ -20,12 +20,12 @@ public class AgentLogin {
         this.password = password;
     }
 ///////////////////////////////////////////////
-	public String getKind() {
-		return kind;
+	public String getKindCode() {
+		return kindCode;
 	}
 	
     public void setKind(String kind) {
-        this.kind = kind;
+        this.kindCode = kind;
     }
 
 }

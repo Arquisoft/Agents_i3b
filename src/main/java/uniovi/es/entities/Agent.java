@@ -1,4 +1,4 @@
-package hello;
+package uniovi.es.entities;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,10 +10,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "users")
-public class UserInfo2 {
+public class Agent {
 
     // Log
-    private static final Logger LOG = LoggerFactory.getLogger(UserInfo2.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Agent.class);
 
     @Id
     private String id;
@@ -30,9 +30,9 @@ public class UserInfo2 {
     
     private String kindCode; 
 
-    private UserInfo2() {}
+    private Agent() {}
 	
-	public UserInfo2(String id,String passw ,String name,String email, String location, String kind) {
+	public Agent(String id,String passw ,String name,String email, String location, String kind) {
         this.id=id;
         this.password=passw;
 		this.name = name;
@@ -42,7 +42,7 @@ public class UserInfo2 {
         
     }
 
-    public UserInfo2(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
+    public Agent(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
     	this.id=id;
         this.password=passw;
 		this.name = name;
@@ -85,6 +85,20 @@ public class UserInfo2 {
 	}
 
 	public String getKind() {
+		try {
+			BufferedReader br =new BufferedReader(new FileReader("Libro1.csv"));
+	        String line = br.readLine();
+	        while (null!=line) {
+	           String [] fields = line.split(";");
+	           if(this.kindCode.equals(fields[0]))
+	           {
+	        	   return fields[1];
+	           }
+	        }
+			}catch(IOException e)
+			{
+				LOG.error(e.getMessage(), e);
+			}
 		return kind;
 	}
 
@@ -97,20 +111,6 @@ public class UserInfo2 {
 	}
 
 	public String getKindCode() {
-		try {
-		BufferedReader br =new BufferedReader(new FileReader("Libro1.csv"));
-        String line = br.readLine();
-        while (null!=line) {
-           String [] fields = line.split(";");
-           if(this.kind.equals(fields[1]))
-           {
-        	   return fields[0];
-           }
-        }
-		}catch(IOException e)
-		{
-			LOG.error(e.getMessage(), e);
-		}
         return kindCode;
 	}
 
@@ -131,7 +131,7 @@ public class UserInfo2 {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserInfo2 other = (UserInfo2) obj;
+		Agent other = (Agent) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -41,11 +41,11 @@ public class FormControllerTest {
 
     @Test
     public void testLoginPage() throws Exception {
-        mockMvc.perform(get("/login"))
+        mockMvc.perform(get("/checkAgentInfo"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Username:")))
                 .andExpect(content().string(containsString("Password:")))
-                .andExpect(content().string(containsString("Kind:")));
+                .andExpect(content().string(containsString("KindCode:")));
     }
 
     @Test
@@ -54,7 +54,7 @@ public class FormControllerTest {
     	agentsService.deleteUser(user);
     	agentsService.insertUser(user);
     	
-    	mockMvc.perform(post("/login")
+    	mockMvc.perform(post("/checkAgentInfo")
               .param("login", "11111111A")
               .param("password", "123456")
     		  .param("kind","1"))
@@ -69,7 +69,7 @@ public class FormControllerTest {
 
     @Test
     public void testLoginIncorrect() throws Exception {
-    	 mockMvc.perform(post("/login")
+    	 mockMvc.perform(post("/checkAgentInfo")
                .param("login", "11111111A")
                .param("password", "123456")
                .param("kind","4"))

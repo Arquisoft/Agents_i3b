@@ -10,7 +10,7 @@ public class MainController {
 
     @RequestMapping("/")
     public ModelAndView landing() {
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:/checkAgentInfo");
     }
 
 }

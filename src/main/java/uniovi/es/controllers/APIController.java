@@ -25,7 +25,6 @@ public class APIController {
     public ResponseEntity user(@RequestBody AgentLogin login) {
         // If the combination of email, password and kindCode is correct, 200 OK is returned
         // If not, 404 NOT FOUND is returned
-
         Agent user = agentsService.getAgent(login.getLogin(), login.getPassword(),login.getKindCode());
         if (user == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

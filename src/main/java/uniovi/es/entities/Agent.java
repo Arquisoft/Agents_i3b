@@ -31,16 +31,6 @@ public class Agent {
     private String kindCode; 
 
     private Agent() {}
-	
-	public Agent(String id,String passw ,String name,String email, String location, String kind) {
-        this.id=id;
-        this.password=passw;
-		this.name = name;
-        this.email = email;
-        this.location=location;
-        this.kind=kind;
-        
-    }
 
     public Agent(String id,String passw ,String name,String email, String location, String kind,String kindCode) {
     	this.id=id;
@@ -85,20 +75,6 @@ public class Agent {
 	}
 
 	public String getKind() {
-		try {
-			BufferedReader br =new BufferedReader(new FileReader("Libro1.csv"));
-	        String line = br.readLine();
-	        while (null!=line) {
-	           String [] fields = line.split(";");
-	           if(this.kindCode.equals(fields[0]))
-	           {
-	        	   return fields[1];
-	           }
-	        }
-			}catch(IOException e)
-			{
-				LOG.error(e.getMessage(), e);
-			}
 		return kind;
 	}
 

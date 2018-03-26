@@ -21,13 +21,13 @@ public class FormController {
 	@Autowired
     private AgentsService agentsService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkAgentInfo", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "checkAgent";
 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkAgentInfo", method = RequestMethod.POST)
     public String loginPost(Model model, @RequestParam(value = "login") String login, 
     		@RequestParam(value = "password") String password, 
     		@RequestParam(value = "kind") String kindCode ) {
@@ -35,15 +35,18 @@ public class FormController {
         Agent user = agentsService.getAgent(login, password,kindCode);
 
         if (user == null)
-            return "usererror";
+        {
+        	model.addAttribute("errorDetails", true);
+            return "checkAgent";
+        }
         else {
-            model.addAttribute("name", user.getName());
-            model.addAttribute("email", user.getEmail());
-            model.addAttribute("location", user.getLocation());
-            model.addAttribute("kind", user.getKind());
-            model.addAttribute("kindCode", user.getKindCode());
-
-            return "info";
+		    model.addAttribute("name", user.getName());
+		    model.addAttribute("email", user.getEmail());
+		    model.addAttribute("location", user.getLocation());
+		    model.addAttribute("kind", user.getKind());
+		    model.addAttribute("kindCode", user.getKindCode());
+		
+		    return "infoAgent";
         }
 
     }

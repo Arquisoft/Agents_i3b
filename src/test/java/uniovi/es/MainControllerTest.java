@@ -33,7 +33,7 @@ public class MainControllerTest {
     public void getLanding() throws Exception {
         mockMvc.perform(get("/"))
 		    .andExpect(status().is3xxRedirection())
-		    .andExpect(redirectedUrl("/login"));     
+		    .andExpect(redirectedUrl("/checkAgentInfo"));     
     }
 
 

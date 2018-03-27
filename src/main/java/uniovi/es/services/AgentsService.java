@@ -27,7 +27,7 @@ public class AgentsService {
 	}
 
 	public void deleteUser(Agent user) {
-		repository.delete(user);;
+		repository.delete(user);
 		
 	}
 

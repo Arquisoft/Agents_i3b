@@ -1,19 +1,10 @@
 package uniovi.es.entities;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "users")
 public class Agent {
-
-    // Log
-    private static final Logger LOG = LoggerFactory.getLogger(Agent.class);
 
     @Id
     private String id;

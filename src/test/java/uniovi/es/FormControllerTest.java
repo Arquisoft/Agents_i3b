@@ -74,7 +74,7 @@ public class FormControllerTest {
                .param("password", "123456")
                .param("kind","4"))
                .andExpect(status().isOk())
-               .andExpect(content().string(containsString("Invalid login details.")));
+               .andExpect(content().string(containsString("Invalid agent details.")));
     }
 
 }
